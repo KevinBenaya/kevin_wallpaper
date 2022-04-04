@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:kevin_wallpaper/data/data.dart';
 import 'package:kevin_wallpaper/widgets/widget.dart';
@@ -19,11 +21,17 @@ class _HomeState extends State<Home> {
         "https://api.pexels.com/v1/curated?per_page=1",
         headers: {"Authorization": apiKey});
 
-    print(response.body.toString());
+    //print(response.body.toString());
+
+    Map<String, dynamic> jsonData = jsonDecode(response.body);
+    jsonData["photos"].forEach((element) {
+      print(element);
+    });
   }
 
   @override
   void initState() {
+    getTrendingWallpapers();
     categories = getCategories();
     super.initState();
   }
