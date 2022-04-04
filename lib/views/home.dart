@@ -80,7 +80,8 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)==> Search(searchQuery: searchController.text),),
+                          MaterialPageRoute(builder: (context)==> Search(searchQuery: searchController.text),
+                          ),
                         );
                       },
                       child: Container(
