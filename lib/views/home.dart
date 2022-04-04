@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:kevin_wallpaper/data/data.dart';
+import 'package:kevin_wallpaper/model/wallpaper_model.dart';
 import 'package:kevin_wallpaper/widgets/widget.dart';
 import 'package:kevin_wallpaper/model/categories_model.dart';
 import 'package:http/http.dart' as http;
@@ -15,6 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoriesModel> categories = [];
+  List<WallpaperModel> wallpapers = [];
 
   getTrendingWallpapers() async {
     var response = await http.get(
@@ -25,8 +27,9 @@ class _HomeState extends State<Home> {
 
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     jsonData["photos"].forEach((element) {
-      print(element);
-    });
+       // print(element)    });
+       WallpaperModel wallpaperModel = new WallpaperModel();
+       wallpaperModel = 
   }
 
   @override
@@ -79,6 +82,7 @@ class _HomeState extends State<Home> {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
+                  //wallpapers[index].src.portrait
                   return CategoriesTile(
                     title: categories[index].categorieName,
                     imgUrl: categories[index].imgUrl,
@@ -100,7 +104,7 @@ class CategoriesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 4),
+      margin: const EdgeInsets.only(right: 4),
       child: Stack(
         children: <Widget>[
           ClipRRect(
