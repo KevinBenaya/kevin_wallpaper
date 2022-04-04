@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kevin_wallpaper/data/data.dart';
 import 'package:kevin_wallpaper/widgets/widget.dart';
 import 'package:kevin_wallpaper/model/categories_model.dart';
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,6 +13,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoriesModel> categories = new List();
+
+  getTrendingWallpapers() {
+    var response = 
+  }
 
   @override
   void initState() {
