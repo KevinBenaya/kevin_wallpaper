@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kevin_wallpaper/views/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: MyHomePage(),
+      home: Home(),
     );
   }
 }
