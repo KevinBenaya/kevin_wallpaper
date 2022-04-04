@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:kevin_wallpaper/data/data.dart';
 import 'package:kevin_wallpaper/model/wallpaper_model.dart';
+import 'package:kevin_wallpaper/views/search.dart';
 import 'package:kevin_wallpaper/widgets/widget.dart';
 import 'package:kevin_wallpaper/model/categories_model.dart';
 import 'package:http/http.dart' as http;
@@ -17,6 +18,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<CategoriesModel> categories = [];
   List<WallpaperModel> wallpapers = [];
+
+  TextEditingController searchController = new TextEditingController();
 
   getTrendingWallpapers() async {
     var response = await http.get(
@@ -51,50 +54,66 @@ class _HomeState extends State<Home> {
         title: brandName(),
         elevation: 0.0,
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xfff5f8fd),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              margin: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                children: const <Widget>[
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "search wallpaper",
-                        border: InputBorder.none,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xfff5f8fd),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                child: Row(
+                  children: const <Widget>[
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "search wallpaper",
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
-                  ),
-                  Icon(Icons.search),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context)==> Search(searchQuery: ,)),
+                        );
+                      },
+                      child: Container(
+                        child: Icon(Icons.search),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Container(
-              height: 80,
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                itemCount: categories.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  //wallpapers[index].src.portrait
-                  return CategoriesTile(
-                    title: categories[index].categorieName,
-                    imgUrl: categories[index].imgUrl,
-                  );
-                },
+              const SizedBox(
+                height: 16,
               ),
-            ),
-          ],
+              Container(
+                height: 80,
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  itemCount: categories.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    //wallpapers[index].src.portrait
+                    return CategoriesTile(
+                      title: categories[index].categorieName,
+                      imgUrl: categories[index].imgUrl,
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              wallpapersList(wallpapers: wallpapers, context: context),
+            ],
+          ),
         ),
       ),
     );
@@ -121,7 +140,10 @@ class CategoriesTile extends StatelessWidget {
             ),
           ),
           Container(
-            color: Colors.black26,
+            decoration: BoxDecoration(
+              color: Colors.black26,
+              borderRadius: BorderRadius.circular(8),
+            ),
             height: 50,
             width: 100,
             alignment: Alignment.center,
