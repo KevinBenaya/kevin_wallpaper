@@ -69,6 +69,7 @@ class _HomeState extends State<Home> {
                   children: const <Widget>[
                     Expanded(
                       child: TextField(
+                        controller: searchController,
                         decoration: InputDecoration(
                           hintText: "search wallpaper",
                           border: InputBorder.none,
@@ -79,7 +80,7 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)==> Search(searchQuery: ,)),
+                          MaterialPageRoute(builder: (context)==> Search(searchQuery: searchController.text),),
                         );
                       },
                       child: Container(
