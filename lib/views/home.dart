@@ -27,9 +27,13 @@ class _HomeState extends State<Home> {
 
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     jsonData["photos"].forEach((element) {
-       // print(element)    });
-       WallpaperModel wallpaperModel = new WallpaperModel();
-       wallpaperModel = 
+      // print(element)    });
+      WallpaperModel wallpaperModel = new WallpaperModel();
+      wallpaperModel = WallpaperModel.fromMap(element);
+      wallpapers.add(wallpaperModel);
+    });
+
+    setState(() {});
   }
 
   @override
@@ -52,11 +56,11 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                color: Color(0xfff5f8fd),
+                color: const Color(0xfff5f8fd),
                 borderRadius: BorderRadius.circular(30),
               ),
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              margin: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              margin: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(
                 children: const <Widget>[
                   Expanded(
@@ -71,13 +75,13 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Container(
               height: 80,
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 itemCount: categories.length,
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -99,7 +103,7 @@ class _HomeState extends State<Home> {
 
 class CategoriesTile extends StatelessWidget {
   final String imgUrl, title;
-  CategoriesTile({@required this.title, @required this.imgUrl});
+  const CategoriesTile({@required this.title, @required this.imgUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +127,7 @@ class CategoriesTile extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                   fontSize: 15),
