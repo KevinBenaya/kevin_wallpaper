@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const SizedBox(
-                height: 16,
+                height: 30,
               ),
               wallpapersList(wallpapers: wallpapers, context: context),
             ],
