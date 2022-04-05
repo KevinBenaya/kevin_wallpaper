@@ -18,9 +18,10 @@ class CategorieScreen extends StatefulWidget {
 class _CategorieScreenState extends State<CategorieScreen> {
   List<WallpaperModel> wallpapers = [];
 
-  getCategorieWallpaper() async {
+  getSearchWallpapers(String query) async {
     var response = await http.get(
-        Uri.parse("https://api.pexels.com/v1/search?query=nature&per_page=1"),
+        Uri.parse(
+            "https://api.pexels.com/v1/search?query=$query&per_page=15&page=1"),
         headers: {"Authorization": apiKey});
 
     //print(response.body.toString());
@@ -54,7 +55,7 @@ class _CategorieScreenState extends State<CategorieScreen> {
           child: Column(
             children: [
               const SizedBox(height: 16),
-              wallpapersList(wallpapers: wallpapers, context: context);
+              wallpapersList(wallpapers: wallpapers, context: context),
             ],
           ),
         ),

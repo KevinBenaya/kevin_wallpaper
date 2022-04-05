@@ -22,14 +22,14 @@ class _HomeState extends State<Home> {
   TextEditingController searchController = TextEditingController();
 
   getTrendingWallpapers() async {
-    var response = await http.get(Uri.parse
-        ("https://api.pexels.com/v1/curated?per_page=1"),
+    var response = await http.get(
+        Uri.parse("https://api.pexels.com/v1/curated?per_page=1"),
         headers: {"Authorization": apiKey});
 
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     jsonData["photos"].forEach((element) {
       // print(element)    });
-      WallpaperModel wallpaperModel =  WallpaperModel();
+      WallpaperModel wallpaperModel = WallpaperModel();
       wallpaperModel = WallpaperModel.fromMap(element);
       wallpapers.add(wallpaperModel);
     });
@@ -55,9 +55,8 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: Container(
           child: Column(
-            children:[
+            children: [
               Container(
-                
                 decoration: BoxDecoration(
                   color: const Color(0xfff5f8fd),
                   borderRadius: BorderRadius.circular(30),
@@ -79,7 +78,9 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)==> Search(searchQuery: searchController.text),
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                Search(searchQuery: searchController.text)),
                           ),
                         );
                       },
@@ -121,7 +122,8 @@ class _HomeState extends State<Home> {
 
 class CategoriesTile extends StatelessWidget {
   final String imgUrl, title;
-  const CategoriesTile({Key? key, required this.title, required this.imgUrl}) : super(key: key);
+  const CategoriesTile({Key? key, required this.title, required this.imgUrl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
