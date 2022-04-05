@@ -4,9 +4,9 @@ import 'package:kevin_wallpaper/views/image_view.dart';
 
 Widget brandName() {
   return RichText(
-    text: TextSpan(
+    text: const TextSpan(
       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-      children: const <TextSpan>[
+      children: <TextSpan>[
         TextSpan(text: 'Wallpaper', style: TextStyle(color: Colors.black87)),
         TextSpan(text: 'Hub', style: TextStyle(color: Colors.blue)),
       ],
@@ -16,7 +16,7 @@ Widget brandName() {
 
 Widget wallpapersList({required List<WallpaperModel> wallpapers, context}) {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 16),
+    padding: const EdgeInsets.symmetric(horizontal: 16),
     child: GridView.count(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),

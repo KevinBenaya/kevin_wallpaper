@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:kevin_wallpaper/data/data.dart';
 import 'package:kevin_wallpaper/widgets/widget.dart';
-import 'package:kevin_wallpaper/model/categories_model.dart';
 import 'package:kevin_wallpaper/model/wallpaper_model.dart';
 
 class CategorieScreen extends StatefulWidget {
@@ -29,7 +28,7 @@ class _CategorieScreenState extends State<CategorieScreen> {
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     jsonData["photos"].forEach((element) {
       // print(element)    });
-      WallpaperModel wallpaperModel = new WallpaperModel();
+      WallpaperModel wallpaperModel = WallpaperModel();
       wallpaperModel = WallpaperModel.fromMap(element);
       wallpapers.add(wallpaperModel);
     });

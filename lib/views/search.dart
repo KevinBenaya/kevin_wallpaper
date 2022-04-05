@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kevin_wallpaper/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:kevin_wallpaper/views/search.dart';
-import 'package:kevin_wallpaper/views/categorie.dart';
 import 'package:kevin_wallpaper/data/data.dart';
 import 'package:kevin_wallpaper/model/wallpaper_model.dart';
-import 'package:kevin_wallpaper/model/categories_model.dart';
 
 class Search extends StatefulWidget {
   final String searchQuery;
-  Search({Key? key, required this.searchQuery}) : super(key: key);
+  const Search({Key? key, required this.searchQuery}) : super(key: key);
 
   @override
   State<Search> createState() => _SearchState();
@@ -18,7 +15,7 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   List<WallpaperModel> wallpapers = [];
-  TextEditingController searchController = new TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   getSearchWallpapers(String query) async {
     var response = await http.get(
@@ -30,7 +27,7 @@ class _SearchState extends State<Search> {
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     jsonData["photos"].forEach((element) {
       // print(element)    });
-      WallpaperModel wallpaperModel = new WallpaperModel();
+      WallpaperModel wallpaperModel = WallpaperModel();
       wallpaperModel = WallpaperModel.fromMap(element);
       wallpapers.add(wallpaperModel);
     });
@@ -68,7 +65,7 @@ class _SearchState extends State<Search> {
                     Expanded(
                       child: TextField(
                         controller: searchController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: "search wallpaper",
                           border: InputBorder.none,
                         ),
@@ -79,13 +76,13 @@ class _SearchState extends State<Search> {
                         getSearchWallpapers(searchController.text);
                       },
                       child: Container(
-                        child: Icon(Icons.search),
+                        child: const Icon(Icons.search),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               wallpapersList(wallpapers: wallpapers, context: context),
             ],
           ),

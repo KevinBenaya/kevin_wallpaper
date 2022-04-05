@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   List<CategoriesModel> categories = [];
   List<WallpaperModel> wallpapers = [];
 
-  TextEditingController searchController = new TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   getTrendingWallpapers() async {
     var response = await http.get(Uri.parse
@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     jsonData["photos"].forEach((element) {
       // print(element)    });
-      WallpaperModel wallpaperModel = new WallpaperModel();
+      WallpaperModel wallpaperModel =  WallpaperModel();
       wallpaperModel = WallpaperModel.fromMap(element);
       wallpapers.add(wallpaperModel);
     });
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                     Expanded(
                       child: TextField(
                         controller: searchController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: "search wallpaper",
                           border: InputBorder.none,
                         ),
@@ -83,9 +83,7 @@ class _HomeState extends State<Home> {
                           ),
                         );
                       },
-                      child: Container(
-                        child: Icon(Icons.search),
-                      ),
+                      child: const Icon(Icons.search),
                     ),
                   ],
                 ),
@@ -123,7 +121,7 @@ class _HomeState extends State<Home> {
 
 class CategoriesTile extends StatelessWidget {
   final String imgUrl, title;
-  const CategoriesTile({required this.title, required this.imgUrl});
+  const CategoriesTile({Key? key, required this.title, required this.imgUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

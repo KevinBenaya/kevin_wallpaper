@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ImageView extends StatefulWidget {
   final String imgUrl;
-  ImageView({required this.imgUrl});
+  const ImageView({Key? key, required this.imgUrl}) : super(key: key);
 
   @override
   State<ImageView> createState() => _ImageViewState();
@@ -30,11 +30,11 @@ class _ImageViewState extends State<ImageView> {
           ),
           Container(
             width: MediaQuery.of(context).size.width / 2,
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.white60, width: 1),
               borderRadius: BorderRadius.circular(30),
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [
                   Color(0x36FFFFFF),
                   Color(0xFFFFFFFF),
@@ -42,21 +42,21 @@ class _ImageViewState extends State<ImageView> {
               ),
             ),
             child: Column(
-              children: <Widget>[
+              children: const <Widget>[
                 Text('Set Wallpaper'),
                 Text('Image will be saved in gallery',
                     style: TextStyle(fontSize: 10, color: Colors.white70)),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          Text(
+          const Text(
             'Cancel',
             style: TextStyle(color: Colors.white),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
         ],
