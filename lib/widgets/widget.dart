@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kevin_wallpaper/model/wallpaper_model.dart';
+import 'package:kevin_wallpaper/views/image_view.dart';
 
 Widget brandName() {
   return RichText(
@@ -12,12 +14,12 @@ Widget brandName() {
   );
 }
 
-Widget wallpapersList(List<WallpaperModel> wallpapers, context) {
+Widget wallpapersList({required List<WallpaperModel> wallpapers, context}) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 16),
     child: GridView.count(
       shrinkWrap: true,
-      physics: ClampingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       crossAxisCount: 2,
       childAspectRatio: 0.6,
       mainAxisSpacing: 6.0,
@@ -30,18 +32,21 @@ Widget wallpapersList(List<WallpaperModel> wallpapers, context) {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ImageView(
-                    imgUrl: wallpaper.src.portrait,
+                    imgUrl: (wallpaper.src!.portrait)!,
                   ),
                 ),
               );
             },
             child: Hero(
-              tag: wallpaper.src.portrait,
+              tag: (wallpaper.src!.portrait)!,
               child: Container(
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Image.network(wallpaper.src.portrait,
-                        fit: BoxFit.cover)),
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.network(
+                    (wallpaper.src!.portrait)!,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           ),
