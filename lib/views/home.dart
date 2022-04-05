@@ -100,10 +100,9 @@ class _HomeState extends State<Home> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    //wallpapers[index].src.portrait
                     return CategoriesTile(
-                      title: categories[index].categorieName,
-                      imgUrl: categories[index].imgUrl,
+                      title: categories[index].categorieName!,
+                      imgUrl: categories[index].imgUrl!,
                     );
                   },
                 ),
