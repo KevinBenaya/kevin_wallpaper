@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ImageView extends StatefulWidget {
   final String imgUrl;
-  ImageView({@required this.imgUrl});
+  ImageView({required this.imgUrl});
 
   @override
   State<ImageView> createState() => _ImageViewState();
