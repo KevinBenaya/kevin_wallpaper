@@ -4,6 +4,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:kevin_wallpaper/views/search.dart';
 import 'package:kevin_wallpaper/views/categorie.dart';
+import 'package:kevin_wallpaper/data/data.dart';
+import 'package:kevin_wallpaper/model/wallpaper_model.dart';
+import 'package:kevin_wallpaper/model/categories_model.dart';
 
 class Search extends StatefulWidget {
   final String searchQuery;
@@ -61,7 +64,7 @@ class _SearchState extends State<Search> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 margin: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
-                  children: const <Widget>[
+                  children: <Widget>[
                     Expanded(
                       child: TextField(
                         controller: searchController,

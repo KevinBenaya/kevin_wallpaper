@@ -22,11 +22,9 @@ class _HomeState extends State<Home> {
   TextEditingController searchController = new TextEditingController();
 
   getTrendingWallpapers() async {
-    var response = await http.get(
-        "https://api.pexels.com/v1/curated?per_page=1",
+    var response = await http.get(Uri.parse
+        ("https://api.pexels.com/v1/curated?per_page=1"),
         headers: {"Authorization": apiKey});
-
-    //print(response.body.toString());
 
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     jsonData["photos"].forEach((element) {
@@ -57,8 +55,9 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: Container(
           child: Column(
-            children: <Widget>[
+            children:[
               Container(
+                
                 decoration: BoxDecoration(
                   color: const Color(0xfff5f8fd),
                   borderRadius: BorderRadius.circular(30),
@@ -66,7 +65,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 margin: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
-                  children: const <Widget>[
+                  children: <Widget>[
                     Expanded(
                       child: TextField(
                         controller: searchController,
@@ -95,7 +94,7 @@ class _HomeState extends State<Home> {
                 height: 16,
               ),
               Container(
-                height: 80,
+                height: 40,
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   itemCount: categories.length,
@@ -124,7 +123,7 @@ class _HomeState extends State<Home> {
 
 class CategoriesTile extends StatelessWidget {
   final String imgUrl, title;
-  const CategoriesTile({@required this.title, @required this.imgUrl});
+  const CategoriesTile({required this.title, required this.imgUrl});
 
   @override
   Widget build(BuildContext context) {
