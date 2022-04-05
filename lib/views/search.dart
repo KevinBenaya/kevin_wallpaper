@@ -10,7 +10,7 @@ import 'package:kevin_wallpaper/model/categories_model.dart';
 
 class Search extends StatefulWidget {
   final String searchQuery;
-  Search({this.searchQuery});
+  Search({Key? key, required this.searchQuery}) : super(key: key);
 
   @override
   State<Search> createState() => _SearchState();
