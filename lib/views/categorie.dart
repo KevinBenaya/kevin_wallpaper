@@ -7,7 +7,8 @@ import 'package:kevin_wallpaper/widgets/widget.dart';
 class CategorieScreen extends StatefulWidget {
   final String categorieName;
 
-  CategorieScreen({@required this.categorieName});
+  const CategorieScreen({Key? key, required this.categorieName})
+      : super(key: key);
 
   @override
   State<CategorieScreen> createState() => _CategorieScreenState();
@@ -18,7 +19,7 @@ class _CategorieScreenState extends State<CategorieScreen> {
 
   getCategorieWallpaper() async {
     var response = await http.get(
-        "https://api.pexels.com/v1/search?query=nature&per_page=1",
+        Uri.parse("https://api.pexels.com/v1/search?query=nature&per_page=1"),
         headers: {"Authorization": apiKey});
 
     //print(response.body.toString());
@@ -42,6 +43,21 @@ class _CategorieScreenState extends State<CategorieScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: brandName(),
+        elevation: 0.0,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              const SizedBox(height: 16),
+              wallpapersList(wallpapers: wallpapers, context: context);
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
